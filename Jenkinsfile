@@ -63,12 +63,14 @@ node('maven')
 
         // Update the Git/Gogs repository with the latest file
         def commit = "Release " + version
-        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'gitid', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']])
+        withCredentials([string(credentialsId: 'gitid', variable: 'TOKEN')])
+        //withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'gitid', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']])
         {
             //available as an env variable, but will be masked if you try to print it out any which way
             sh "git config --global user.email 'cjsrinivas@gmail.com' && git config --global user.name 'Srinivas Coimbatore'"
             sh "git add .s2i/environment && git commit -m \"${commit}\""
-            sh "git push https://${env.USERNAME}:${env.PASSWORD}@github.com/cjsrinivas/openshift-tasks-ocp.git"
+            //sh "git push https://${env.USERNAME}:${env.PASSWORD}@github.com/cjsrinivas/openshift-tasks-ocp.git"
+            sh "git push https://${env.TOKEN}@github.com/cjsrinivas/openshift-tasks-ocp.git"
         }
     }
 
