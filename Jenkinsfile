@@ -26,15 +26,12 @@ node('maven')
         echo "Building version ${version}"
         sh "${mvnCmd} clean package -DskipTests"
     }
-    def mvnHme = tool "mvnCmd"
+    
     stage('Selenium')
     {
-        // Get Source Code from SCM (Git) as configured in the Jenkins Project
-        // Next line for inline script, "checkout scm" for Jenkinsfile from Gogs
-        git 'https://github.com/venkatalolla/tasks.git'
-        //checkout scm
-        sh "${mvnHme}/bin/mvn clean test"
+        sh "${mvnCmd} clean install"
     }
+    
     stage('Unit Tests')
     {
         echo "Unit Tests"
