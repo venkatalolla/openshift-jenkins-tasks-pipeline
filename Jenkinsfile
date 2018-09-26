@@ -32,7 +32,7 @@ node('maven')
         sh "${mvnCmd} clean install"
     }
     
-    stage('Unit Tests')
+    /*stage('Unit Tests')
     {
         echo "Unit Tests"
         sh "${mvnCmd} test"
@@ -98,7 +98,7 @@ node('maven')
         openshiftVerifyService namespace: 'tasks-dev', svcName:'tasks', verbose: 'false'
     }
 
-    /*stage('Integration Test')
+    stage('Integration Test')
     {
         // Could use the OpenShift-Tasks REST APIs to make sure it is working as expected.
         def newTag = "ProdReady-${version}"
