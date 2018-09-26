@@ -74,7 +74,7 @@ node('maven')
         }
     }
 
-    /*stage('Build OpenShift Image')
+    stage('Build OpenShift Image')
     {
         def newTag = "TestingCandidate-${version}"
         echo "New Tag: ${newTag}"
@@ -83,7 +83,7 @@ node('maven')
         openshiftTag alias: 'false', destStream: 'tasks', destTag:newTag, destinationNamespace: 'tasks-dev', namespace:'tasks-dev', srcStream: 'tasks', srcTag: 'latest', verbose:'false'
     }
 
-    stage('Deploy to Dev')
+    /*stage('Deploy to Dev')
     {
         // Patch the DeploymentConfig so that it points to the latest TestingCandidate-${version} Image.
         sh "oc project tasks-dev"
