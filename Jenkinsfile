@@ -21,13 +21,13 @@ node('maven')
     def artifactId = getArtifactIdFromPom("pom.xml")
     def version    = getVersionFromPom("pom.xml")
 
-    /*stage('Build war')
+    stage('Build war')
     {
         echo "Building version ${version}"
         sh "${mvnCmd} clean package -DskipTests"
     }
 
-    stage('Unit Tests')
+    /*stage('Unit Tests')
     {
         echo "Unit Tests"
         sh "${mvnCmd} test"
