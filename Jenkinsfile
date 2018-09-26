@@ -83,7 +83,7 @@ node('maven')
         openshiftTag alias: 'false', destStream: 'tasks', destTag:newTag, destinationNamespace: 'tasks-dev', namespace:'tasks-dev', srcStream: 'tasks', srcTag: 'latest', verbose:'false'
     }
 
-    /*stage('Deploy to Dev')
+    stage('Deploy to Dev')
     {
         // Patch the DeploymentConfig so that it points to the latest TestingCandidate-${version} Image.
         sh "oc project tasks-dev"
@@ -93,7 +93,7 @@ node('maven')
         openshiftVerifyService namespace: 'tasks-dev', svcName:'tasks', verbose: 'false'
     }
 
-    stage('Integration Test')
+    /*stage('Integration Test')
     {
         // Could use the OpenShift-Tasks REST APIs to make sure it is working as expected.
         def newTag = "ProdReady-${version}"
