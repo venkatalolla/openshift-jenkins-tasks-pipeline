@@ -10,7 +10,7 @@ node('maven')
     {
         // Get Source Code from SCM (Git) as configured in the Jenkins Project
         // Next line for inline script, "checkout scm" for Jenkinsfile from Gogs
-        git 'https://github.com/venkatalolla/helloworld.git'
+        git 'https://github.com/venkatalolla/openshift-tasks.git'
         //checkout scm
     }
 
@@ -21,7 +21,7 @@ node('maven')
     def artifactId = getArtifactIdFromPom("pom.xml")
     def version    = getVersionFromPom("pom.xml")
 
-    stage('Build war')
+    /*stage('Build war')
     {
         echo "Building version ${version}"
         sh "${mvnCmd} clean package -DskipTests"
@@ -93,7 +93,7 @@ node('maven')
         openshiftVerifyService namespace: 'tasks-dev', svcName:'tasks', verbose: 'false'
     }
 
-    /*stage('Integration Test')
+    stage('Integration Test')
     {
         // Could use the OpenShift-Tasks REST APIs to make sure it is working as expected.
         def newTag = "ProdReady-${version}"
