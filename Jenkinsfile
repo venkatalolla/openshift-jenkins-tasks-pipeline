@@ -123,7 +123,7 @@ node('maven')
         echo "Dest svc:   " + dest
     }
 
-    stage('Deploy new Version')
+    stage('Deploy Production Version')
     {
         echo "Deploying to ${dest}"
         // Patch the DeploymentConfig so that it points to
