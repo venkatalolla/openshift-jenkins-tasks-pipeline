@@ -10,7 +10,7 @@ node('maven')
     {
         // Get Source Code from SCM (Git) as configured in the Jenkins Project
         // Next line for inline script, "checkout scm" for Jenkinsfile from Gogs
-        git 'https://github.com/venkatalolla/openshift-tasks.git'
+        git 'https://github.com/venkatalolla/newtasks.git'
         //checkout scm
     }
 
