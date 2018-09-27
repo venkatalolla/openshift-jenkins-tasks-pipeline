@@ -96,7 +96,7 @@ node('maven')
         sh "${mvnHme}/bin/mvn clean test"
     }
 
-    /*stage('Integration Test')
+    stage('Integration Test')
     {
         // Could use the OpenShift-Tasks REST APIs to make sure it is working as expected.
         def newTag = "ProdReady-${version}"
@@ -138,7 +138,7 @@ node('maven')
         sh 'oc get route tasks -n tasks-prod > oc_out.txt'
         oc_out = readFile('oc_out.txt')
         echo "Current route configuration: " + oc_out
-    }*/
+    }
 }
 
 // Convenience Functions to read variables from the pom.xml
