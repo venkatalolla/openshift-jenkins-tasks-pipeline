@@ -105,7 +105,7 @@ node('maven')
     // -------------------------------------
     def dest   = "tasks-green"
     def active = ""
-    stage('Prep Production Deployment')
+    stage('Prep QA Deployment')
     {
         sh "oc project tasks-prod"
         sh "oc get route tasks -n tasks-prod -o jsonpath='{.spec.to.name }' > activesvc.txt"
