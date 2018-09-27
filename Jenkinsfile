@@ -110,7 +110,7 @@ node('maven')
     // -------------------------------------
     def dest   = "tasks-green"
     def active = ""
-    /*stage('Prep QA Deployment')
+    stage('Prep QA Deployment')
     {
         sh "oc project tasks-prod"
         sh "oc get route tasks -n tasks-prod -o jsonpath='{.spec.to.name }' > activesvc.txt"
@@ -123,7 +123,7 @@ node('maven')
         echo "Dest svc:   " + dest
     }
 
-    stage('Deploy Production Version')
+    /*stage('Deploy Production Version')
     {
         echo "Deploying to ${dest}"
         // Patch the DeploymentConfig so that it points to
