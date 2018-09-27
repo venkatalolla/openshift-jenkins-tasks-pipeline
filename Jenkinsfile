@@ -88,7 +88,7 @@ node('maven')
         openshiftVerifyDeployment depCfg: 'tasks', namespace:'tasks-dev', replicaCount: '1', verbose: 'false', verifyReplicaCount: 'false', waitTime: '', waitUnit: 'sec'
         openshiftVerifyService namespace: 'tasks-dev', svcName:'tasks', verbose: 'false'
     }
-    /*
+    
     def mvnHme = tool "mvnCmd"
     stage('Unit Tests')
     {
@@ -98,7 +98,7 @@ node('maven')
         sh "${mvnCmd} test"
     }
 
-    stage('Integration Test')
+    /*stage('Integration Test')
     {
         // Could use the OpenShift-Tasks REST APIs to make sure it is working as expected.
         def newTag = "ProdReady-${version}"
