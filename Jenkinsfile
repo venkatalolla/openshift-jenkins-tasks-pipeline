@@ -21,21 +21,16 @@ node('maven')
     def artifactId = getArtifactIdFromPom("pom.xml")
     def version    = getVersionFromPom("pom.xml")
 
-    stage('Build war')
+    /*stage('Build war')
     {
         echo "Building version ${version}"
         sh "${mvnCmd} clean package -DskipTests"
     }
     
-    stage('Selenium')
-    {
-        sh "${mvnCmd} clean test"
-    }
-    
     stage('Unit Tests')
     {
         echo "Unit Tests"
-        sh "${mvnCmd} test"
+        sh "${mvnCmd} clean test"
     }
 
     stage('Code Analysis')
@@ -140,7 +135,7 @@ node('maven')
         sh 'oc get route tasks -n tasks-prod > oc_out.txt'
         oc_out = readFile('oc_out.txt')
         echo "Current route configuration: " + oc_out
-    }
+    }*/
 }
 
 // Convenience Functions to read variables from the pom.xml
