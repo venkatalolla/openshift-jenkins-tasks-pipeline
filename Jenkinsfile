@@ -95,9 +95,6 @@ node('maven')
         git 'https://github.com/venkatalolla/tasks.git'
         sh "${mvnHme}/bin/mvn clean test"
     }
-        echo "Unit Tests"
-        sh "${mvnCmd} clean test"
-    }
 
     /*stage('Integration Test')
     {
