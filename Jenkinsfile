@@ -27,12 +27,12 @@ node('maven')
         sh "${mvnCmd} clean package -DskipTests"
     }
     
-    stage('Code Analysis')
+    /*stage('Code Analysis')
     {
         echo "Code Analysis"
         //sh "${mvnCmd} sonar:sonar -Dsonar.host.url=http://sonarqube.sonarqube.svc.cluster.local:9000/ -Dsonar.projectName=${JOB_BASE_NAME}"
         sh "${mvnCmd} org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar -Dsonar.host.url=http://sonarqube.sonarqube.svc.cluster.local:9000/ -Dsonar.projectName=${JOB_BASE_NAME}"
-    }
+    }*/
 
     stage('Publish to Nexus')
     {
@@ -40,7 +40,7 @@ node('maven')
 
         // Replace xyz-nexus with the name of your project
         sh "${mvnCmd} deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::http://nexus3.nexus.svc.cluster.local:8081/repository/releases"
-
+        sh "pwd"
         // Get Repository from GitHub
         git url: 'https://github.com/cjsrinivas/openshift-tasks-ocp.git'
 
@@ -65,6 +65,7 @@ node('maven')
             sh "git add .s2i/environment && git commit -m \"${commit}\""
             //sh "git push https://${env.USERNAME}:${env.PASSWORD}@github.com/cjsrinivas/openshift-tasks-ocp.git"
             sh "git push https://${env.TOKEN}@github.com/cjsrinivas/openshift-tasks-ocp.git"
+            sh "pwd"
         }
     }
 
