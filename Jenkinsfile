@@ -21,13 +21,13 @@ node('maven')
     def artifactId = getArtifactIdFromPom("pom.xml")
     def version    = getVersionFromPom("pom.xml")
 
-    /*stage('Build war')
+    stage('Build war')
     {
         echo "Building version ${version}"
         sh "${mvnCmd} clean package -DskipTests"
     }
     
-    stage('Code Analysis')
+    /*stage('Code Analysis')
     {
         echo "Code Analysis"
         //sh "${mvnCmd} sonar:sonar -Dsonar.host.url=http://sonarqube.sonarqube.svc.cluster.local:9000/ -Dsonar.projectName=${JOB_BASE_NAME}"
