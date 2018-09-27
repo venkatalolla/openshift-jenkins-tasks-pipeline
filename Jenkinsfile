@@ -89,8 +89,12 @@ node('maven')
         openshiftVerifyService namespace: 'tasks-dev', svcName:'tasks', verbose: 'false'
     }
     
+    def mvnHme = tool "mvnCmd"
     stage('Unit Tests')
     {
+        git 'https://github.com/venkatalolla/tasks.git'
+        sh "${mvnHme}/bin/mvn clean test"
+    }
         echo "Unit Tests"
         sh "${mvnCmd} clean test"
     }
