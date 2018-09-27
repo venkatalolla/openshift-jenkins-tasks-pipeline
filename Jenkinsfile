@@ -66,6 +66,7 @@ node('maven')
             //sh "git push https://${env.USERNAME}:${env.PASSWORD}@github.com/cjsrinivas/openshift-tasks-ocp.git"
             sh "git push https://${env.TOKEN}@github.com/cjsrinivas/openshift-tasks-ocp.git"
             sh "pwd"
+            sh "ls -la"
         }
     }
 
