@@ -32,7 +32,7 @@ node('maven')
         sh "${mvnCmd} clean test"
     }
     
-    /*stage('Unit Tests')
+    stage('Unit Tests')
     {
         echo "Unit Tests"
         sh "${mvnCmd} test"
@@ -92,7 +92,7 @@ node('maven')
     {
         // Patch the DeploymentConfig so that it points to the latest TestingCandidate-${version} Image.
         sh "oc project tasks-dev"
-        sh "oc patch dc tasks --patch '{\"spec\": { \"triggers\": [ {\"type\": \"ImageChange\", \"imageChangeParams\": {\"containerNames\": [ \"tasks\" ], \"from\": { \"kind\":\"ImageStreamTag\", \"namespace\": \"tasks-dev\", \"name\":\"tasks:TestingCandidate-$version\"}}}]}}' -n tasks-dev"
+        sh "oc patch deploymentconfig tasks --patch '{\"spec\": { \"triggers\": [ {\"type\": \"ImageChange\", \"imageChangeParams\": {\"containerNames\": [ \"tasks\" ], \"from\": { \"kind\":\"ImageStreamTag\", \"namespace\": \"tasks-dev\", \"name\":\"tasks:TestingCandidate-$version\"}}}]}}' -n tasks-dev"
         openshiftDeploy depCfg: 'tasks', namespace: 'tasks-dev', verbose: 'false', waitTime: '', waitUnit: 'sec'
         openshiftVerifyDeployment depCfg: 'tasks', namespace:'tasks-dev', replicaCount: '1', verbose: 'false', verifyReplicaCount: 'false', waitTime: '', waitUnit: 'sec'
         openshiftVerifyService namespace: 'tasks-dev', svcName:'tasks', verbose: 'false'
@@ -129,7 +129,7 @@ node('maven')
         // Patch the DeploymentConfig so that it points to
         // the latest ProdReady-${version} Image.
         echo "Updating deployment configuration and waiting 15 seconds for the update to complete"
-        sh "oc patch dc ${dest} --patch '{\"spec\": { \"triggers\": [ {\"type\": \"ImageChange\", \"imageChangeParams\": {\"containerNames\": [ \"$dest\" ], \"from\": { \"kind\":\"ImageStreamTag\", \"namespace\": \"tasks-dev\", \"name\":\"tasks:ProdReady-$version\"}}}]}}' -n tasks-prod"
+        sh "oc patch deploymentconfig ${dest} --patch '{\"spec\": { \"triggers\": [ {\"type\": \"ImageChange\", \"imageChangeParams\": {\"containerNames\": [ \"$dest\" ], \"from\": { \"kind\":\"ImageStreamTag\", \"namespace\": \"tasks-dev\", \"name\":\"tasks:ProdReady-$version\"}}}]}}' -n tasks-prod"
         openshiftDeploy depCfg: dest, namespace: 'tasks-prod', verbose: 'false', waitTime: '', waitUnit: 'sec'
         openshiftVerifyDeployment depCfg: dest, namespace: 'tasks-prod', replicaCount: '1', verbose: 'false', verifyReplicaCount: 'true', waitTime: '', waitUnit: 'sec'
     }
@@ -140,7 +140,7 @@ node('maven')
         sh 'oc get route tasks -n tasks-prod > oc_out.txt'
         oc_out = readFile('oc_out.txt')
         echo "Current route configuration: " + oc_out
-    }*/
+    }
 }
 
 // Convenience Functions to read variables from the pom.xml
