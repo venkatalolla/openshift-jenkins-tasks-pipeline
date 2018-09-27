@@ -98,7 +98,7 @@ node('maven')
         sh "${mvnCmd} test"
     }
 
-    /*stage('Integration Test')
+    stage('Integration Test')
     {
         // Could use the OpenShift-Tasks REST APIs to make sure it is working as expected.
         def newTag = "ProdReady-${version}"
@@ -110,7 +110,7 @@ node('maven')
     // -------------------------------------
     def dest   = "tasks-green"
     def active = ""
-    stage('Prep QA Deployment')
+    /*stage('Prep QA Deployment')
     {
         sh "oc project tasks-prod"
         sh "oc get route tasks -n tasks-prod -o jsonpath='{.spec.to.name }' > activesvc.txt"
