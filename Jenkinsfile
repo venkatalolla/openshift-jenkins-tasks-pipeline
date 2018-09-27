@@ -34,7 +34,7 @@ node('maven')
         sh "${mvnCmd} org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar -Dsonar.host.url=http://sonarqube.sonarqube.svc.cluster.local:9000/ -Dsonar.projectName=${JOB_BASE_NAME}"
     }
 
-    /*stage('Publish to Nexus')
+    stage('Publish to Nexus')
     {
         echo "Publish to Nexus"
 
@@ -88,7 +88,7 @@ node('maven')
         openshiftVerifyDeployment depCfg: 'tasks', namespace:'tasks-dev', replicaCount: '1', verbose: 'false', verifyReplicaCount: 'false', waitTime: '', waitUnit: 'sec'
         openshiftVerifyService namespace: 'tasks-dev', svcName:'tasks', verbose: 'false'
     }
-    
+    /*
     def mvnHme = tool "mvnCmd"
     stage('Unit Tests')
     {
