@@ -29,7 +29,7 @@ node('maven')
     
     stage('Selenium')
     {
-        sh "${mvnCmd} clean install"
+        sh "${mvnCmd} clean test"
     }
     
     /*stage('Unit Tests')
