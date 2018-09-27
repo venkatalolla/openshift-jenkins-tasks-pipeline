@@ -123,7 +123,7 @@ node('maven')
         echo "Dest svc:   " + dest
     }
 
-    /*stage('Deploy Production Version')
+    stage('Deploy Production Version')
     {
         echo "Deploying to ${dest}"
         // Patch the DeploymentConfig so that it points to
@@ -134,7 +134,7 @@ node('maven')
         openshiftVerifyDeployment depCfg: dest, namespace: 'tasks-prod', replicaCount: '1', verbose: 'false', verifyReplicaCount: 'true', waitTime: '', waitUnit: 'sec'
     }
 
-    stage('Switch over to new Version')
+    /*stage('Switch over to new Version')
     {
         sh 'oc patch route tasks -n tasks-prod -p \'{"spec":{"to":{"name":"' + dest + '"}}}\''
         sh 'oc get route tasks -n tasks-prod > oc_out.txt'
