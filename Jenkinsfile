@@ -32,7 +32,7 @@ node('maven')
         echo "Code Analysis"
         //sh "${mvnCmd} sonar:sonar -Dsonar.host.url=http://sonarqube.sonarqube.svc.cluster.local:9000/ -Dsonar.projectName=${JOB_BASE_NAME}"
         sh "${mvnCmd} org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar -Dsonar.host.url=http://sonarqube.sonarqube.svc.cluster.local:9000/ -Dsonar.projectName=${JOB_BASE_NAME}"
-    }
+    }*/
 
     stage('Publish to Nexus')
     {
@@ -92,8 +92,10 @@ node('maven')
     def mvnHme = tool "mvnCmd"
     stage('Unit Tests')
     {
-        git 'https://github.com/venkatalolla/tasks.git'
-        sh "${mvnHme}/bin/mvn clean test"
+        //git 'https://github.com/venkatalolla/tasks.git'
+        git 'https://github.com/venkatalolla/mtdemo.git'
+        //sh "${mvnHme}/bin/mvn clean test"
+        sh "${mvnCmd} test"
     }
 
     stage('Integration Test')
