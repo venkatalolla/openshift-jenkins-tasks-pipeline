@@ -140,7 +140,7 @@ node('maven')
         sh 'oc get route tasks -n tasks-prod > oc_out.txt'
         oc_out = readFile('oc_out.txt')
         echo "Current route configuration: " + oc_out
-    }*/
+    }
 }
 
 // Convenience Functions to read variables from the pom.xml
