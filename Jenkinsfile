@@ -27,16 +27,10 @@ node('maven')
         sh "${mvnCmd} clean package -DskipTests"
     }
     
-    stage('Unit Tests')
-    {
-        echo "Unit Tests"
-        sh "${mvnCmd} clean test"
-    }
-
-    /*stage('Code Analysis')
+    stage('Code Analysis')
     {
         echo "Code Analysis"
-        //sh "${mvnCmd} sonar:sonar -Dsonar.host.url=http://sonarqube.sonarqube.svc.cluster.local:9000/ -Dsonar.projectName=${JOB_BASE_NAME}"
+        sh "${mvnCmd} sonar:sonar -Dsonar.host.url=http://sonarqube.sonarqube.svc.cluster.local:9000/ -Dsonar.projectName=${JOB_BASE_NAME}"
         sh "${mvnCmd} org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar -Dsonar.host.url=http://sonarqube.sonarqube.svc.cluster.local:9000/ -Dsonar.projectName=${JOB_BASE_NAME}"
     }
 
@@ -92,8 +86,14 @@ node('maven')
         openshiftVerifyDeployment depCfg: 'tasks', namespace:'tasks-dev', replicaCount: '1', verbose: 'false', verifyReplicaCount: 'false', waitTime: '', waitUnit: 'sec'
         openshiftVerifyService namespace: 'tasks-dev', svcName:'tasks', verbose: 'false'
     }
+    
+    stage('Unit Tests')
+    {
+        echo "Unit Tests"
+        sh "${mvnCmd} clean test"
+    }
 
-    stage('Integration Test')
+    /*stage('Integration Test')
     {
         // Could use the OpenShift-Tasks REST APIs to make sure it is working as expected.
         def newTag = "ProdReady-${version}"
