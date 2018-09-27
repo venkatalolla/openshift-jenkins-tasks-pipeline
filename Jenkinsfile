@@ -21,18 +21,18 @@ node('maven')
     def artifactId = getArtifactIdFromPom("pom.xml")
     def version    = getVersionFromPom("pom.xml")
 
-    stage('Build war')
+    /*stage('Build war')
     {
         echo "Building version ${version}"
         sh "${mvnCmd} clean package -DskipTests"
     }
     
-    /*stage('Code Analysis')
+    stage('Code Analysis')
     {
         echo "Code Analysis"
         //sh "${mvnCmd} sonar:sonar -Dsonar.host.url=http://sonarqube.sonarqube.svc.cluster.local:9000/ -Dsonar.projectName=${JOB_BASE_NAME}"
         sh "${mvnCmd} org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar -Dsonar.host.url=http://sonarqube.sonarqube.svc.cluster.local:9000/ -Dsonar.projectName=${JOB_BASE_NAME}"
-    }*/
+    }
 
     stage('Publish to Nexus')
     {
@@ -140,7 +140,7 @@ node('maven')
         sh 'oc get route tasks -n tasks-prod > oc_out.txt'
         oc_out = readFile('oc_out.txt')
         echo "Current route configuration: " + oc_out
-    }
+    }*/
 }
 
 // Convenience Functions to read variables from the pom.xml
