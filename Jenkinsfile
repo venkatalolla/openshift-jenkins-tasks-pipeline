@@ -24,7 +24,7 @@ node('maven')
     stage('Build war')
     {
         echo "Building version ${version}"
-        sh "${mvnCmd} clean package -DskipTests"
+        sh "${mvnCmd} clean package"
     }
     
     stage('Code Analysis')
